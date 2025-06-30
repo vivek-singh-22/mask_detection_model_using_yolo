@@ -1,0 +1,23 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches: [main]  # or your deployment branch
+  workflow_dispatch:  # allow manual trigger
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.dckr_pat_kdV-fQUHdO0VjuSl5TXlozbpD6A }}" | docker login -u "${{ secrets.vivek2210 }}" --password-stdin
+
+      - name: Build Docker Image
+        run: docker build -t ${{ secrets.vivek2210 }}/Mask_Detection_app:latest .
+
+      - name: Push Docker Image
+        run: docker push ${{ secrets.vivek2210 }}/Mask_Detection-app:latest
