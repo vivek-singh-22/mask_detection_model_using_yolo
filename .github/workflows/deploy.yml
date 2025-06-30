@@ -1,0 +1,11 @@
+  - name: Deploy to EC2
+    uses: appleboy/ssh-action@v1.0.3
+    with:
+      host: ${{ secrets.EC2_HOST }}
+      username: ${{ secrets.EC2_USER }}
+      key: ${{ secrets.EC2_SSH_KEY }}
+      script: |
+        docker pull vivek2210/mask_detection_app:latest
+        docker stop mask-app || true
+        docker rm mask-app || true
+        docker run -d -p 8501:8501 --name mask-app vivek2210/mask_detection_app:latest
