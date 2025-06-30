@@ -22,4 +22,4 @@ jobs:
       - name: Push Docker Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/mask_detection_app:latest
 
-        run: docker push ${{ secrets.vivek2210 }}/Mask_Detection-app:latest
+        
